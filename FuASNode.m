@@ -31,11 +31,15 @@
 - (void)setAttributedString:(NSString *)string font:(UIFont *)font color:(UIColor *)color subs:(NSArray *)subsText subColor:(UIColor *)subColor
 {
     NSString *newString = IS_NOT_EMPTY(string)?string:@"";
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if (color) {
+        [dict setObject:color forKey:NSForegroundColorAttributeName];
+    }
+    if (font) {
+        [dict setObject:font forKey:NSFontAttributeName];
+    }
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:newString
-                                                                                         attributes:@{
-                                                                                                      NSForegroundColorAttributeName:color,
-                                                                                                      NSFontAttributeName:font
-                                                                                                      }
+                                                                                         attributes:dict
                                                    ];
     if (IS_NOT_EMPTY(newString) && subsText && subColor) {
         for (id obj in subsText) {
@@ -71,11 +75,15 @@
 - (void)setAttributedString:(NSString *)string font:(UIFont *)font color:(UIColor *)color lineSpace:(CGFloat)lineSpace kern:(CGFloat)kern textAlignment:(NSTextAlignment)textAlignment subs:(NSArray *)subsText subColor:(UIColor *)subColor
 {
     NSString *newString = IS_NOT_EMPTY(string)?string:@"";
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if (color) {
+        [dict setObject:color forKey:NSForegroundColorAttributeName];
+    }
+    if (font) {
+        [dict setObject:font forKey:NSFontAttributeName];
+    }
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:newString
-                                                                                         attributes:@{
-                                                                                                      NSForegroundColorAttributeName:color,
-                                                                                                      NSFontAttributeName:font
-                                                                                                      }
+                                                                                         attributes:dict
                                                    ];
     if (IS_NOT_EMPTY(newString) && subsText && subColor) {
         for (id obj in subsText) {
