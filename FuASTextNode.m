@@ -24,10 +24,14 @@
 - (void)addTextLink:(NSString *)string font:(UIFont *)font color:(UIColor *)color block:(NSMutableAttributedString * (^)(NSMutableAttributedString *mutableAttributedString))block
 {
     NSDictionary *(^attributes)(UIFont *, UIColor *) = ^(UIFont *font, UIColor *color){
-        NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:@{
-                                                                                                 NSForegroundColorAttributeName:color,
-                                                                                                 NSFontAttributeName:font
-                                                                                                 }];
+        NSMutableDictionary *mutDict = [NSMutableDictionary dictionary];
+        if (color) {
+            [mutDict setObject:color forKey:NSForegroundColorAttributeName];
+        }
+        if (font) {
+            [mutDict setObject:font forKey:NSFontAttributeName];
+        }
+        NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:mutDict];
         [mutableAttributes setObject:@(self.kern) forKey:NSKernAttributeName];
         
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];

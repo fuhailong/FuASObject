@@ -118,6 +118,26 @@
 
 @end
 
+@implementation ASButtonNode (Public)
+
+- (void)setAttributedString:(NSString *)string font:(UIFont *)font color:(UIColor *)color forState:(UIControlState)state
+{
+    NSString *newString = IS_NOT_EMPTY(string)?string:@"";
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if (color) {
+        [dict setObject:color forKey:NSForegroundColorAttributeName];
+    }
+    if (font) {
+        [dict setObject:font forKey:NSFontAttributeName];
+    }
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:newString
+                                                                                         attributes:dict
+                                                   ];
+    [self setAttributedTitle:attributedString forState:state];
+}
+
+@end
+
 @implementation ASNetworkImageNode (Public)
 
 + (id)imageNode

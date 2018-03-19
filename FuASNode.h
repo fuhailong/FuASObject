@@ -30,6 +30,15 @@
 
 @end
 
+@interface ASButtonNode (Public)
+
+/*
+ ASButtonNode 设置 textcolor font
+ */
+- (void)setAttributedString:(NSString *)string font:(UIFont *)font color:(UIColor *)color forState:(UIControlState)state;
+
+@end
+
 @interface ASNetworkImageNode (Public)
 
 /*
